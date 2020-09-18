@@ -6,44 +6,46 @@ class CSCExamples{
 
 
 	
-	public void setQuestionNo(int QuestionNo){
-		
-
-	}
-
-	public void setCategory(String category){
-		
-	}
-
-	public void setText(Stirng text){
-	
-	}
-
-	public int getQuestionNo(){
-		
-	}
-	
-	public String getCategory(){
-		
-		
-	}
-	public int getText(){
-		
-	}
 	public void addQuestion(CSCExamples question){
-		
+		//add question
 		
 	}
 	
 	public void removeQuestion(int qID){
-		
+		//remove question hete
 		
 	}
 	
 	public void editQuestion(int qID){
-		
+		//edit question hete
 		
 	}
+	
+	public void setQuestionNo(int QuestionNo){
+		this.QuestionNo=QuestionNo;
+
+	}
+
+	public void setCategory(String category){
+		this.category=category;
+	}
+
+	public void setText(Stirng text){
+		this.text=text;
+	}
+
+	public int getQuestionNo(){
+		return QuestionNo;
+	}
+	
+	public String getCategory(){
+		return category;
+		
+	}
+	public int getText(){
+		return text;
+	}
+	
 	
 
 
