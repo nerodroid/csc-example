@@ -6,6 +6,7 @@ class CSCExamples{
 
 
 	
+<<<<<<< HEAD
 	public void addQuestion(CSCExamples question){
 		//add question
 		
@@ -21,6 +22,8 @@ class CSCExamples{
 		
 	}
 	
+=======
+>>>>>>> phys
 	public void setQuestionNo(int QuestionNo){
 		this.QuestionNo=QuestionNo;
 
@@ -44,6 +47,13 @@ class CSCExamples{
 	}
 	public int getText(){
 		return text;
+<<<<<<< HEAD
+=======
+	}
+	public void addQuestion(CSCExamples question){
+		
+		
+>>>>>>> phys
 	}
 	
 	
