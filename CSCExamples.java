@@ -48,11 +48,7 @@ class CSCExamples{
 		return text;
 
 	}
-	public void addQuestion(CSCExamples question){
-		
-		
-
-	}
+	
 	
 	
 
