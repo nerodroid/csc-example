@@ -46,13 +46,12 @@ class CSCExamples{
 	}
 	public int getText(){
 		return text;
-<<<<<<< HEAD
-=======
+
 	}
 	public void addQuestion(CSCExamples question){
 		
 		
->>>>>>> phys
+
 	}
 	
 	
