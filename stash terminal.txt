@@ -1,0 +1,709 @@
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ echo "this is some content to mess with" > merge.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git add merge.txt
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git commit -am "we are commiting the intial content"
+[master (root-commit) 881b818] we are commiting the intial content
+ 1 file changed, 1 insertion(+)
+ create mode 100644 merge.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ ls
+merge.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git checkout -b new_branch_to_merge_later
+Switched to a new branch 'new_branch_to_merge_later'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$ echo "totally different content to merge later" > merge.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$ git commit -am "edited the content of merge.txt to cause a conflict"
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+[new_branch_to_merge_later d28c93c] edited the content of merge.txt to cause a conflict
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$ git checkout  master
+Switched to branch 'master'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ echo "content to append" >> merge.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git commit -am"appended content to merge.txt"
+warning: LF will be replaced by CRLF in merge.txt.
+The file will have its original line endings in your working directory
+[master 984b61f] appended content to merge.txt
+ 1 file changed, 1 insertion(+)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git checkout branch_to_merge_later
+error: pathspec 'branch_to_merge_later' did not match any file(s) known to git
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git checkout new_branch_to_merge_later
+Switched to branch 'new_branch_to_merge_later'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (new_branch_to_merge_later)
+$ git checkout master
+Switched to branch 'master'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master)
+$ git merge new_branch_to_merge_later
+Auto-merging merge.txt
+CONFLICT (content): Merge conflict in merge.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test (master|MERGING)
+$ cd ..
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012
+$ cd git stash-demo/
+bash: cd: too many arguments
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012
+$ cd git-merge-test/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/git-merge-test
+$ cd ..
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012
+$ cd stash-demo/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo
+$ touch Stash.java
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo
+$ git status
+fatal: not a git repository (or any of the parent directories): .git
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo
+$ git init .
+Initialized empty Git repository in E:/2017csc012/stash-demo/.git/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Stash.java
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash
+You do not have the initial commit yet
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git commit -m "initial commit"
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Stash.java
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash
+You do not have the initial commit yet
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash
+You do not have the initial commit yet
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git commit -m "initial commit"
+[master (root-commit) 30891cb] initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 Stash.java
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash
+No local changes to save
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash
+
+Saved working directory and index state WIP on master: 30891cb initial commit
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git status clear
+On branch master
+nothing to commit, working tree clean
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash clean
+fatal: unknown subcommand: clean
+
+usage: git stash list [<options>]
+   or: git stash show [<options>] [<stash>]
+   or: git stash drop [-q|--quiet] [<stash>]
+   or: git stash ( pop | apply ) [--index] [-q|--quiet] [<stash>]
+   or: git stash branch <branchname> [<stash>]
+   or: git stash clear
+   or: git stash [push [-p|--patch] [-k|--[no-]keep-index] [-q|--quiet]
+          [-u|--include-untracked] [-a|--all] [-m|--message <message>]
+          [--pathspec-from-file=<file> [--pathspec-file-nul]]
+          [--] [<pathspec>...]]
+   or: git stash save [-p|--patch] [-k|--[no-]keep-index] [-q|--quiet]
+          [-u|--include-untracked] [-a|--all] [<message>]
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash save "Variables added. "
+Saved working directory and index state On master: Variables added.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash list
+stash@{0}: On master: Variables added.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash apply
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Stash.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ git stash save "get set methods added. "
+Saved working directory and index state On master: get set methods added.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ cd ..
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012
+$ cd
+git-merge-test/ stash-demo/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012
+$ cd stash-demo/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo
+$ git clone https://github.com/nerodroid/csc-example.git
+Cloning into 'csc-example'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 21 (delta 7), reused 20 (delta 6), pack-reused 0
+Unpacking objects: 100% (21/21), 1.92 KiB | 2.00 KiB/s, done.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo
+$ git init
+Initialized empty Git repository in E:/2017csc012/stash-demo/.git/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo (master)
+$ cd csc-example/
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ touch Stash.java
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables added"
+No local changes to save
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Stash.java
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Stash.java
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Stash.java
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables added"
+Saved working directory and index state On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "get set methods added"
+No local changes to save
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "get set methods added"
+Saved working directory and index state On master: get set methods added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ ^Ct add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "get set methods added"
+No local changes to save
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "get set methods added"
+Saved working directory and index state On master: get set methods added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "final methods added"
+Saved working directory and index state On master: final methods added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch
+* master
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch stashBranch
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash list
+stash@{0}: On master: final methods added
+stash@{1}: On master: get set methods added
+stash@{2}: On master: get set methods added
+stash@{3}: On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables added"
+Saved working directory and index state On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables added"
+Saved working directory and index state On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables added"
+Saved working directory and index state On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "get set added"
+Saved working directory and index state On master: get set added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "additional methods added"
+Saved working directory and index state On master: additional methods added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash branch stashBranch
+fatal: A branch named 'stashBranch' already exists.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash branch stash_branch
+Switched to a new branch 'stash_branch'
+<stdin>:7: trailing whitespace.
+public class Stash{
+<stdin>:11: trailing whitespace.
+
+<stdin>:15: trailing whitespace.
+
+warning: 3 lines add whitespace errors.
+On branch stash_branch
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   Stash.java
+
+Dropped refs/stash@{0} (0e49dbb2ffabecce43cbd02dea78f394f073fdec)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (stash_branch)
+$ git stash list
+stash@{0}: On master: get set added
+stash@{1}: On master: variables added
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (stash_branch)
+$ git checkout master
+Switched to branch 'master'
+A       Stash.java
+Your branch is up to date with 'origin/master'.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ touch a.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "firsy line"
+Saved working directory and index state On master: firsy line
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "second line"
+Saved working directory and index state On master: second line
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash list
+stash@{0}: On master: second line
+stash@{1}: On master: firsy line
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch b1
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git checkout b1
+Switched to branch 'b1'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (b1)
+$ git stash list
+stash@{0}: On master: second line
+stash@{1}: On master: firsy line
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (b1)
+$ git stash apply  stash@{0}
+error: The following untracked working tree files would be overwritten by merge:
+        a.txt
+Please move or remove them before you merge.
+Aborting
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (b1)
+$ git stash apply  stash@{0}
+On branch b1
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   a.txt
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (b1)
+$ git commit -m "second branch "
+[b1 c26084e] second branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 a.txt
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (b1)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash apply stash@{1}
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   a.txt
+
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch -r stash
+stash_branch   stashBranch
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch -r stash
+fatal: The -a, and -r, options to 'git branch' do not take a branch name.
+Did you mean to use: -a|-r --list <pattern>?
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git branch -r stashBranch
+fatal: The -a, and -r, options to 'git branch' do not take a branch name.
+Did you mean to use: -a|-r --list <pattern>?
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git checkout stash
+stash_branch   stashBranch
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git checkout stash
+stash_branch   stashBranch
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git checkout stashBranch
+Switched to branch 'stashBranch'
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (stashBranch)
+$ git -r
+unknown option: -r
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (stashBranch)
+$ git branch -r
+  origin/HEAD -> origin/master
+  origin/csc
+  origin/master
+  origin/phys
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (stashBranch)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git commit -m "Stash java file added"
+[master e98f928] Stash java file added
+ 1 file changed, 3 insertions(+)
+ create mode 100644 Stash.java
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "variables"
+Saved working directory and index state On master: variables
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash save "getters and setters"
+Saved working directory and index state On master: getters and setters
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash branch stashBranch
+fatal: A branch named 'stashBranch' already exists.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash branch branch2
+Switched to a new branch 'branch2'
+M       Stash.java
+<stdin>:10: trailing whitespace.
+        public String getStashName(){
+<stdin>:13: trailing whitespace.
+        public String getStashMsg(){
+<stdin>:16: trailing whitespace.
+
+<stdin>:20: trailing whitespace.
+
+<stdin>:21: trailing whitespace.
+        public void setStashName(String stashName){
+warning: squelched 3 whitespace errors
+warning: 8 lines add whitespace errors.
+Unstaged changes after reset:
+M       Stash.java
+error: Your local changes to the following files would be overwritten by merge:
+        Stash.java
+Please commit your changes or stash them before you merge.
+Aborting
+Index was not unstashed.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (branch2)
+$ git commit -m "commited on branch 2"
+On branch branch2
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Stash.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (branch2)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (branch2)
+$ git commit -m "commited on branch 2"
+[branch2 738e719] commited on branch 2
+ 1 file changed, 11 insertions(+)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (branch2)
+$ git stash list
+stash@{0}: On master: getters and setters
+stash@{1}: On master: variables
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (branch2)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash list
+stash@{0}: On master: getters and setters
+stash@{1}: On master: variables
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash show -p stash@{0}
+diff --git a/Stash.java b/Stash.java
+index 0a1b541..ec1d5d9 100644
+--- a/Stash.java
++++ b/Stash.java
+@@ -1,3 +1,26 @@
+ public class Stash{
++       public String getStashId(){
++               return stashId;
++       }
++       public String getStashName(){
++                       return setStashName;
++       }
++       public String getStashMsg(){
++                       return stashMsg;
++       }
++
++       public void setStashId(String stashId){
++               this.stashId =stashId;
++       }
++
++       public void setStashName(String stashName){
++               this.stashName =stashName;
++
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash show -p stash@{1}
+diff --git a/Stash.java b/Stash.java
+index 0a1b541..98e38fa 100644
+--- a/Stash.java
++++ b/Stash.java
+@@ -1,3 +1,7 @@
+-public class Stash{
++public class Stash{
++
++       private String stashId;
++       private String stashName;
++       private String stashMsg;
+
+ }
+\ No newline at end of file
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git stash apply stash@{1}
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Stash.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git commit -m "final commit"
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Stash.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git add .
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git commit -m "final commit"
+[master 2cfacfb] final commit
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git merger branch2
+git: 'merger' is not a git command. See 'git --help'.
+
+The most similar command is
+        merge
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master)
+$ git merge branch2
+Auto-merging Stash.java
+CONFLICT (content): Merge conflict in Stash.java
+Automatic merge failed; fix conflicts and then commit the result.
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master|MERGING)
+$ git stash clear
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master|MERGING)
+$
+
+cscuser@DESKTOP-HP18 MINGW64 /e/2017csc012/stash-demo/csc-example (master|MERGING)
+$                                                                                                 
